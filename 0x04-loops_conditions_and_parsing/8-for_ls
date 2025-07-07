@@ -2,18 +2,17 @@
 # This script displays the content of the current directory in a list format, showing only the part after the first dash
 
 for file in *; do
-    # Skip if no files match the pattern (when * doesn't expand)
-    if [[ ! -e "$file" ]]; then
+    # Skip hidden files (files starting with .)
+    if [[ "$file" == .* ]]; then
         continue
     fi
-    # Skip hidden files (files starting with .)
-    if [[ "$file" != .* ]]; then
-        # Check if the file contains a dash
-        if [[ "$file" == *-* ]]; then
-            # Extract everything after the first dash
-            echo "${file#*-}"
-        else
-            # If no dash, display the full filename
-            echo "$file"
-        fi
+    
+    # Check if the file contains a dash
+    if [[ "$file" == *-* ]]; then
+        # Extract the part after the first dash
+        echo "${file#*-}"
+    else
+        # If no dash, display the whole filename
+        echo "$file"
     fi
+done
