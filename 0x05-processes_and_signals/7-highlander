@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Script that kills the 7-highlander process
+# 7-highlander - Infinite loop with SIGTERM handling
 
-# Find and send SIGTERM to the 7-highlander process
-pkill -TERM -f "7-highlander"
+trap 'echo "I am invincible!!!"' SIGTERM
+
+while true; do
+  echo "To infinity and beyond"
+  sleep 2
+done
